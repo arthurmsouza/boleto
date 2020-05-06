@@ -75,9 +75,7 @@ var reguladorController = function(logger) {
 
         //chamada para SDK HyperLedger passando assinatura retorna lista de aceites no Ledger
         if (assinatura) {
-            //chaincodeLib.consultarAceite(assinatura, function(error, resposta) {
-                console.groupCollapsed('teste consultar aceite',cb);
-                cb.consultarAceite(assinatura, function(error, resposta) { 
+            chaincodeLib.consultarAceite(assinatura, function(error, resposta) {
                 if (!error) {
                     logger.debug("Resposta consultarAceite: ");
                     logger.debug(resposta);
