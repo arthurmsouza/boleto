@@ -41,7 +41,7 @@ module.exports =  function(logger) {
         return network;
       }
 
-    var chainCodeEnroll =  async function (options,cb){
+    var chainCodeEnroll =  async (options,cb) => {
     try { 
         
         console.log('options',options);
