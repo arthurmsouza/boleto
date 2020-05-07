@@ -74,10 +74,11 @@ module.exports = function(logger) {
             msp_id: enrollmentObj.msp_id
         };
         logger.debug('[fcw] Going to enroll for mspId ', debug);
-
+        console.log('######o homedir',os.homedir()),
+        console.log('######o homedir',enrollmentObj),
         // Make eCert kvs (Key Value Store)
         HFC.newDefaultKeyValueStore({
-            path: path.join(os.homedir(), '.hfc-key-store/' + enrollmentObj.uuid) //store eCert in the kvs directory
+            path: path.join(os.homedir(), '.wallet/' + enrollmentObj.uuid) //store eCert in the kvs directory
         }).then(function(store) {
             client.setStateStore(store);
             return getSubmitter(client, enrollmentObj); //do most of the work here

@@ -1,34 +1,34 @@
 {
     "credentials": {
         "network_id": "869d5acd305445629c4c09d54eac63db",
-        "network_name": "aciptance-prod",
+        "network_name": "boleto",
         "orderers": [{
-            "name": "fabric-orderer-0a",
-            "discovery": "grpcs://ldn1-zbc8a.2.secure.blockchain.ibm.com:26705",
+            "name": "orderer.example.com",
+            "discovery": "grpcs://localhost:7050",
             "msp_id": "OrdererMSP",
-            "tls_certificate": "cert_1"
+            "tls_certificate": ""
         }],
         "cas": [{
-            "name": "fabric-ca-1a",
-            "api": "https://ldn1-zbc8a.2.secure.blockchain.ibm.com:26711",
-            "msp_id": "PeerOrg1",
+            "name": "ca.example.com",
+            "api": "localhost:7054",
+            "msp_id": "Org1MSP",
             "users": [{
                 "enrollId": "admin",
-                "enrollSecret": "12f36e94a3"
+                "enrollSecret": "adminpw"
             }],
-            "tls_certificate": "cert_1"
+            "tls_certificate": ""
         }],
         "peers": [{
-            "name": "fabric-peer-1a",
-            "discovery": "grpcs://ldn1-zbc8a.2.secure.blockchain.ibm.com:26721",
-            "events": "grpcs://ldn1-zbc8a.2.secure.blockchain.ibm.com:26720",
-            "msp_id": "PeerOrg1",
-            "tls_certificate": "cert_1"
+            "name": "peer0.org1.example.com",
+            "discovery": "grpcs://locahost:7051",
+            "events": "grpcs://localhost:7051",
+            "msp_id": "Org1MSP",
+            "tls_certificate": ""
         }],
         "app": {
-            "channel_id": "Aciptance-Prod",
-            "chaincode_id": "aciptance",
-            "chaincode_version": "v1",
+            "channel_id": "mychannel",
+            "chaincode_id": "mychannel",
+            "chaincode_version": "v0",
             "block_delay": 1000
         },
         "tls_certificates": {
