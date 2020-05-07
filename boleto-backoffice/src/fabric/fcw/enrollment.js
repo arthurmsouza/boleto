@@ -31,10 +31,10 @@ module.exports = function(logger) {
 
         // Get the network (channel) our contract is deployed to.
         const network = await gateway.getNetwork('mychannel');
-
+        console.log('####network async', network);
          // Get the contract from the network.
         //const contract = network.getContract('boleto');
-        await sleep(3000);
+        await sleep(10000);
         return network;
       }
 
@@ -43,10 +43,11 @@ module.exports = function(logger) {
        
         var network = connection();
         console.log('###retornando network', network);
-        if(cb) cb(null, { network: network})
+        if(cb) cb(null, {network: network})
         return;
     } catch (error) {
-        console.error(`Failed to evaluate transaction: ${error}`);   
+        console.error(`Failed to evaluate transaction: ${error}`); 
+        if (cb) cb({error: 'cannot enroll with undefined uuid' });  
         return;
     }
 
