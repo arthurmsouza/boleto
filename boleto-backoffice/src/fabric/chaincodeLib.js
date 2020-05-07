@@ -144,7 +144,7 @@ module.exports = function(options, fcw, logger) {
         logger.debug('Consultando blockchain height...teste');
         console.log('########cb',cb);
         this.chainCodeEnroll();
-        var network=enrollObj;ß
+        var network=enrollObj;
         console.log('@@@@@@@@@network',network);
         fcw.queryChannel(network, null, cb);
     };
