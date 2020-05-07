@@ -9,17 +9,56 @@ module.exports = function(options, fcw, logger) {
      */
     var enrollObj = null;
 
-    var chainCodeEnroll = async function(cb) {
-        console.log('TTTTTTTunction chainCodeEnroll');
-             fcw.chainCodeEnroll(null,function(errCode, obj) {
-                    console.log('#####function chainCodeEnroll obj',obj)
-                    // uptading enrollObject with authentication parameters
-                    enrollObj = obj;
-                    if (cb) cb(null);
+    async function connection() {
+        const { FileSystemWallet, Gateway } = require('fabric-network');
+        const fs = require('fs');
+        var path = require('path');
+        const ccpPath = path.resolve(__dirname, '..', '..', '..', '..', '..','basic-network', 'connection.json');
+        const ccpJSON = fs.readFileSync(ccpPath, 'utf8');
+        const ccp = JSON.parse(ccpJSON);
+
+        // Create a new file system based wallet for managing identities.
+        const walletPath = path.join(process.cwd(), 'wallet');
+        const wallet = new FileSystemWallet(walletPath);
+        console.log(`xxxWallet path: ${walletPath}`);
+       
+        // Check to see if we've already enrolled the user.
+        console.log('####user');
+        const userExists = await wallet.exists('user1');
+        console.log('####use2',userExists);
+        if (!userExists) {
+            console.log('An identity for the user "user1" do not exists in the wallet');
+            return;
+        }
+        console.log('####user',userExists);
+        console.log('####gateway');
+        // Create a new gateway for connecting to our peer node.
+        const gateway = new Gateway();
+        await gateway.connect(ccp, { wallet, identity: 'user1', discovery: { enabled: true, asLocalhost: false } });
+        console.log('####gateway fim');
+        // Get the network (channel) our contract is deployed to.
+        const network = await gateway.getNetwork('mychannel');
+        console.log('####network async', network);
+         // Get the contract from the network.
+        //const contract = network.getContract('boleto');
+        
+        return network;
+      }
+
+    var chainCodeEnroll =  function(cb) {
+        console.log('TTTTTTT conection unction chainCodeEnroll');
+            // fcw.chainCodeEnroll(null,function(errCode, obj) {
+            //        console.log('#####function chainCodeEnroll obj',obj)
+            //        // uptading enrollObject with authentication parameters
+            //        enrollObj = obj;
+            //        if (cb) cb(null);
                 
-            });
-            console.log('resp',enrollObj);
-            console.log('AAAAAAAfunction chainCodeEnroll',enrollObj);
+            //});
+            //console.log('resp',enrollObj);
+            
+            connection();
+            
+            console.log('AAAAAAAconection chainCodeEnroll',enrollObj);
     }
 
     /**
