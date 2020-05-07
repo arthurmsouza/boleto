@@ -34,7 +34,7 @@ module.exports = function(logger) {
 
          // Get the contract from the network.
         //const contract = network.getContract('boleto');
-        
+        await sleep(3000);
         return network;
       }
 
@@ -43,7 +43,7 @@ module.exports = function(logger) {
        
         var network = connection();
         console.log('###retornando network', network);
-        if(cb) cb(null, { network: network, submitter: submitter })
+        if(cb) cb(null, { network: network})
         return;
     } catch (error) {
         console.error(`Failed to evaluate transaction: ${error}`);   
