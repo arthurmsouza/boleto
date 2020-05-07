@@ -45,7 +45,7 @@ module.exports = function(options, fcw, logger) {
         return network;
       }
 
-    var chainCodeEnroll =  function(cb) {
+    var chainCodeEnroll =  async function(cb) {
         console.log('TTTTTTT conection unction chainCodeEnroll');
             // fcw.chainCodeEnroll(null,function(errCode, obj) {
             //        console.log('#####function chainCodeEnroll obj',obj)
@@ -56,7 +56,7 @@ module.exports = function(options, fcw, logger) {
             //});
             //console.log('resp',enrollObj);
             
-            connection();
+            await connection();
             
             console.log('AAAAAAAconection chainCodeEnroll',enrollObj);
     }
