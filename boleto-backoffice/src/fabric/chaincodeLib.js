@@ -11,7 +11,7 @@ module.exports = function(options, fcw, logger) {
 
     var chainCodeEnroll = async function(cb) {
         console.log('TTTTTTTunction chainCodeEnroll');
-            await fcw.chainCodeEnroll(null,function(errCode, obj) {
+             fcw.chainCodeEnroll(null,function(errCode, obj) {
                     console.log('#####function chainCodeEnroll obj',obj)
                     // uptading enrollObject with authentication parameters
                     enrollObj = obj;

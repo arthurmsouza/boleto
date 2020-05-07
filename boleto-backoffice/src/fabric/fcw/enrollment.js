@@ -4,14 +4,15 @@
 
 module.exports =  function(logger) {
  
-    const { FileSystemWallet, Gateway } = require('fabric-network');
-    const fs = require('fs');
-    var path = require('path');
-    const ccpPath = path.resolve(__dirname, '..', '..', '..', '..', '..','basic-network', 'connection.json');
-    const ccpJSON = fs.readFileSync(ccpPath, 'utf8');
-    const ccp = JSON.parse(ccpJSON);
+   
 
     async function connection() {
+        const { FileSystemWallet, Gateway } = require('fabric-network');
+        const fs = require('fs');
+        var path = require('path');
+        const ccpPath = path.resolve(__dirname, '..', '..', '..', '..', '..','basic-network', 'connection.json');
+        const ccpJSON = fs.readFileSync(ccpPath, 'utf8');
+        const ccp = JSON.parse(ccpJSON);
 
         // Create a new file system based wallet for managing identities.
         const walletPath = path.join(process.cwd(), 'wallet');
@@ -43,7 +44,12 @@ module.exports =  function(logger) {
 
     var chainCodeEnroll =  async (options,cb) => {
     try { 
-        
+        const { FileSystemWallet, Gateway } = require('fabric-network');
+        const fs = require('fs');
+        var path = require('path');
+        const ccpPath = path.resolve(__dirname, '..', '..', '..', '..', '..','basic-network', 'connection.json');
+        const ccpJSON = fs.readFileSync(ccpPath, 'utf8');
+        const ccp = JSON.parse(ccpJSON);
         console.log('options',options);
         console.log('cb',cb);
         console.log('####network asyn teste');
