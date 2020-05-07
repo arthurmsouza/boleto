@@ -2,7 +2,7 @@
  *	Blockchain enrollment Library
  */
 
-module.exports = function(logger) {
+module.exports =  function(logger) {
  
     const { FileSystemWallet, Gateway } = require('fabric-network');
     const fs = require('fs');
@@ -55,13 +55,7 @@ module.exports = function(logger) {
         
          // Check to see if we've already enrolled the user.
          console.log('####user');
-         const userExists = await wallet.exists('user1');
-         console.log('####use2',userExists);
-         if (!userExists) {
-             console.log('An identity for the user "user1" do not exists in the wallet');
-             return;
-         }
-         console.log('####user',userExists);
+         
          console.log('####gateway');
          // Create a new gateway for connecting to our peer node.
          const gateway = new Gateway();
