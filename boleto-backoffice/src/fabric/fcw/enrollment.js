@@ -44,6 +44,7 @@ module.exports = function(logger) {
     try { 
         console.log('####network asyn teste');
         var networkPromise = connection();
+        console.log('####network asyn teste2', networkPromise);
         networkPromise.then(network => {
             console.log('###retornando network', network);
             if(cb) cb(null, {network: network})
