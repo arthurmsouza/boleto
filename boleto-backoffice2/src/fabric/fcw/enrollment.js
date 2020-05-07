@@ -7,7 +7,7 @@ module.exports = function(logger) {
     var path = require('path');
     var common = require('./common.js')(logger);
     var User = require('fabric-client/lib/User.js');
-    var CaService = require('fabric-ca-client/lib/FabricCAClientImpl.js');
+    var CaService = require('fabric-ca-client');
     var Orderer = require('fabric-client/lib/Orderer.js');
     var Peer = require('fabric-client/lib/Peer.js');
     var os = require('os');
@@ -76,20 +76,20 @@ module.exports = function(logger) {
         logger.debug('[fcw] Going to enroll for mspId ', debug);
         console.log('######o homedir',os.homedir());
         console.log('######o homedir',enrollmentObj);
-        
-        var store_path = path.join(os.homedir(), '.hfc-key-store/') //store eCert in the kvs directory
+        var store_path = path.join(__dirname, 'hfc-key-store');
+        //var store_path = path.join(os.homedir(), '.hfc-key-store/') //store eCert in the kvs directory
         console.log('Store path:'+store_path);
         // Make eCert kvs (Key Value Store)
         HFC.newDefaultKeyValueStore({
             path: store_path 
         }).then(function(store) {
             client.setStateStore(store);
-            var crypto_suite = Fabric_Client.newCryptoSuite();
+            var crypto_suite = HFC.newCryptoSuite();
 	        // use the same location for the state store (where the users' certificate are kept)
 	        // and the crypto store (where the users' keys are kept)
-	        var crypto_store = Fabric_Client.newCryptoKeyStore({path: store_path});
+	        var crypto_store = HFC.newCryptoKeyStore({path: store_path});
 	        crypto_suite.setCryptoKeyStore(crypto_store);
-            fabric_client.setCryptoSuite(crypto_suite);
+            client.setCryptoSuite(crypto_suite);
             
             return getSubmitter(client, enrollmentObj); //do most of the work here
         }).then(function(submitter) {
@@ -148,7 +148,8 @@ module.exports = function(logger) {
 
                 // Need to enroll it with CA server
                 console.log('###CA',enrollmentObj.ca_url);
-                var ca_client = new CaService(enrollmentObj.ca_url);
+                
+                var ca_client = new CaService(enrollmentObj.ca_url,null , '', crypto_suite);
                 logger.debug('id', enrollmentObj.enroll_id, 'secret', enrollmentObj.enroll_secret); //dsh todo remove this
                 logger.debug('msp_id', enrollmentObj.msp_id);
                 return ca_client.enroll({
