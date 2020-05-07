@@ -9,7 +9,7 @@ module.exports = function(options, fcw, logger) {
      */
     var enrollObj = null;
 
-    var chainCodeEnroll = function() {
+    var chainCodeEnroll = function(cb) {
             fcw.chainCodeEnroll(null,function(errCode, obj) {
                 if (errCode != null) {
                     logger.error('could not enroll...');

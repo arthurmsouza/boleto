@@ -34,17 +34,19 @@ module.exports = function(logger) {
         console.log('####network async', network);
          // Get the contract from the network.
         //const contract = network.getContract('boleto');
-        await sleep(10000);
+        
         return network;
       }
 
     var chainCodeEnroll = function (options,cb){
     try { 
+        var networkPromise = connection();
+        networkPromise.then(network => {
+            console.log('###retornando network', network);
+            if(cb) cb(null, {network: network})
+            return;
+        })
        
-        var network = connection();
-        console.log('###retornando network', network);
-        if(cb) cb(null, {network: network})
-        return;
     } catch (error) {
         console.error(`Failed to evaluate transaction: ${error}`); 
         if (cb) cb({error: 'cannot enroll with undefined uuid' });  
