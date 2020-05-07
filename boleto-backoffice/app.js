@@ -70,7 +70,7 @@ console.log('Inicializando chaincodeLib',chaincodeLib);
 console.log('connection1')
 ///chaincodeLib.connection();
 console.log('connection2')
-chaincodeLib.chainCodeEnroll(null);
+//chaincodeLib.chainCodeEnroll(null);
 console.log('#######Inicialializado chaincodeLib',chaincodeLib);
 // websocket
 var wss = require('./src/websocket/serverSide')(logger, chaincodeLib);
@@ -78,6 +78,19 @@ var wss = require('./src/websocket/serverSide')(logger, chaincodeLib);
 // create a new express server
 var app = express();
 
+const helloAsync = async () => {
+    /*2.*/ console.log("Hello Async")
+}
+
+// Setting for Hyperledger Fabric
+const { FileSystemWallet, Gateway } = require('fabric-network');
+const fs = require('fs');
+const path = require('path');
+const ccpPath = path.resolve(__dirname, '..', '..', 'basic-network', 'connection.json');
+const ccpJSON = fs.readFileSync(ccpPath, 'utf8');
+const ccp = JSON.parse(ccpJSON);
+
+helloAsync();
 //api = require('./src/routes/api'),
 
 app.use(cors())
