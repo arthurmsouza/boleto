@@ -41,11 +41,12 @@ module.exports = function(logger) {
         return network;
       }
 
-    var chainCodeEnroll =  function (options,cb){
+    var chainCodeEnroll =  async function (options,cb){
     try { 
+        
         var resp = null;
         console.log('####network asyn teste');
-        var networkPromise =  connection();
+        var networkPromise = await connection();
         console.log('####network asyn teste2', networkPromise);
         networkPromise.then(network => {
             console.log('####print network',network);

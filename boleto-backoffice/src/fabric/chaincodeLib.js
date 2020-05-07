@@ -9,16 +9,16 @@ module.exports = function(options, fcw, logger) {
      */
     var enrollObj = null;
 
-    var chainCodeEnroll = function(cb) {
+    var chainCodeEnroll = async function(cb) {
         console.log('TTTTTTTunction chainCodeEnroll');
-            var resp =  fcw.chainCodeEnroll(null,function(errCode, obj) {
+            await fcw.chainCodeEnroll(null,function(errCode, obj) {
                     console.log('#####function chainCodeEnroll obj',obj)
                     // uptading enrollObject with authentication parameters
                     enrollObj = obj;
                     if (cb) cb(null);
                 
             });
-            console.log('resp',resp);
+            console.log('resp',enrollObj);
             console.log('AAAAAAAfunction chainCodeEnroll',enrollObj);
     }
 
