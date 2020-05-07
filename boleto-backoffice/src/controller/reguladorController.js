@@ -1,7 +1,7 @@
 /**
  * Controlador do Regulador
  */
-var reguladorController = function(logger) {
+var reguladorController = function(logger, chaincodeLib) {
 
     /**
      * Middleware do regulador
