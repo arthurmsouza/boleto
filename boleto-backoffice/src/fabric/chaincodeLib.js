@@ -10,6 +10,7 @@ module.exports = function(options, fcw, logger) {
     var enrollObj = null;
 
     var chainCodeEnroll = function(cb) {
+        console.log('TTTTTTTunction chainCodeEnroll');
             fcw.chainCodeEnroll(null,function(errCode, obj) {
                     console.log('#####function chainCodeEnroll obj',obj)
                     // uptading enrollObject with authentication parameters
