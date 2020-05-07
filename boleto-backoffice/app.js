@@ -66,9 +66,9 @@ var fcw = require('./src/fabric/fcw/index')({
 // Initializing Chaincode Library
 var chaincodeLib = require('./src/fabric/chaincodeLib')(options, fcw, logger);
 console.log('Inicializando chaincodeLib',chaincodeLib);
-// enrolling admin
+// enrolling admin`
 chaincodeLib.chainCodeEnroll();
-
+console.log('#######Inicialializado chaincodeLib',chaincodeLib);
 // websocket
 var wss = require('./src/websocket/serverSide')(logger, chaincodeLib);
 

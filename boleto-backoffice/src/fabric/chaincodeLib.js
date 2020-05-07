@@ -11,7 +11,7 @@ module.exports = function(options, fcw, logger) {
 
     var chainCodeEnroll = function() {
         ;(async () => {
-            const obj = await fcw.chainCodeEnroll()
+            const obj = fcw.chainCodeEnroll()
             console.log('#####function chainCodeEnroll obj',obj)
             enrollObj=obj
           })()

@@ -12,7 +12,7 @@ module.exports = function(logger) {
     const ccp = JSON.parse(ccpJSON);
 
 
-    var chainCodeEnroll = async function (){
+    var chainCodeEnroll = async function (cb){
     try { 
         // Create a new file system based wallet for managing identities.
         const walletPath = path.join(process.cwd(), 'wallet');
@@ -37,7 +37,8 @@ module.exports = function(logger) {
         //const contract = network.getContract('boleto');
 
         console.log('###retornando network', network);
-        return network;
+        if(cb) cb(null, { network: network, submitter: submitter })
+        return;
     } catch (error) {
         console.error(`Failed to evaluate transaction: ${error}`);   
         return;
