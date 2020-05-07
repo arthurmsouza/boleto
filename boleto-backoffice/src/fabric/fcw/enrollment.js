@@ -34,10 +34,10 @@ module.exports = function(logger) {
         const network = await gateway.getNetwork('mychannel');
 
         // Get the contract from the network.
-        const contract = network.getContract('boleto');
+        //const contract = network.getContract('boleto');
 
-        console.log('###retornando contract', contract);
-        return contract;
+        console.log('###retornando network', network);
+        return network;
     } catch (error) {
         console.error(`Failed to evaluate transaction: ${error}`);   
         return;
