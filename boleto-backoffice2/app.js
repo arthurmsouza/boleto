@@ -8,7 +8,7 @@
 // This application uses express as its web server
 // for more info, see: http://expressjs.com
 var express = require('express');
-
+var cors = require('cors');
 var http = require('http');
 // cfenv provides access to your Cloud Foundry environment
 // for more info, see: https://www.npmjs.com/package/cfenv
@@ -79,7 +79,7 @@ var wss = require('./src/websocket/serverSide')(logger, chaincodeLib);
 var app = express();
 
 //api = require('./src/routes/api'),
-
+app.use(cors())
 // serve the files out of ./public as our main files
 app.use(express.static(__dirname + '/public'));
 
