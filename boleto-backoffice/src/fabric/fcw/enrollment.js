@@ -24,11 +24,11 @@ module.exports = function(logger) {
             console.log('An identity for the user "user1" do not exists in the wallet');
             return;
         }
-
+        console.log('####gateway');
         // Create a new gateway for connecting to our peer node.
         const gateway = new Gateway();
         await gateway.connect(ccp, { wallet, identity: 'user1', discovery: { enabled: true, asLocalhost: false } });
-
+        console.log('####gateway fim');
         // Get the network (channel) our contract is deployed to.
         const network = await gateway.getNetwork('mychannel');
         console.log('####network async', network);
