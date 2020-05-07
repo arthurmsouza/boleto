@@ -52,7 +52,7 @@ module.exports = function(logger) {
         var chain = {};
         try {
             client = new HFC();
-            chain = client.newChain(enrollmentObj.channel_id);
+            chain = client.newChannel(enrollmentObj.channel_id);
         } catch (e) {
             logger.error(e); //it might error about 1 chain per network, but that's not a problem just continue
         }
