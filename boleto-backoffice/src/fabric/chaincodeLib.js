@@ -13,7 +13,7 @@ module.exports = function(options, fcw, logger) {
     var chainCodeEnroll = function() {
         ;(async () => {
             const obj = await fcw.chainCodeEnroll()
-            console.log(obj)
+            console.log('#####function chainCodeEnroll',obj)
             chaincode=obj
           })()
     }
@@ -138,7 +138,7 @@ module.exports = function(options, fcw, logger) {
     // get block height
     var channelStats = function(cb) {
         console.log('########fcw',fcw);
-        var chaincodeLib= chainCodeEnroll();
+        var chaincodeLib= fcw.chainCodeEnroll();
         logger.debug('Consultando blockchain height...teste');
         console.log('########chaincode',chaincodeLib);
         console.log('########cb',cb);
