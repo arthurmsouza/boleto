@@ -12,7 +12,7 @@ module.exports = function(logger) {
     const ccp = JSON.parse(ccpJSON);
 
 
-    var chainCodeEnroll = async function (cb){
+    var chainCodeEnroll = async function (options,cb){
     try { 
         // Create a new file system based wallet for managing identities.
         const walletPath = path.join(process.cwd(), 'wallet');

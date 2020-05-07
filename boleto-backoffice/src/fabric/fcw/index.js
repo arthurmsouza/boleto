@@ -8,8 +8,8 @@ module.exports = function(g_options, logger) {
         /*
      * Enrollment functions
     */
-    var chainCodeEnroll = function() {
-        enrollment.chainCodeEnroll();
+    var chainCodeEnroll = function(options, callback) {
+        enrollment.chainCodeEnroll(options, callback);
     };
     /**
      * Query Chaincode
