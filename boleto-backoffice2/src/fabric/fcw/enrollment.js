@@ -93,7 +93,7 @@ module.exports = function(logger) {
             
             return getSubmitter(client, enrollmentObj, crypto_suite); //do most of the work here
         }).then(function(submitter) {
-
+            console.log(chain);
             chain.addOrderer(new Orderer(enrollmentObj.orderer_url, {
                 pem: enrollmentObj.pem,
                 'ssl-target-name-override': enrollmentObj.common_name //can be null if cert matches hostname
