@@ -9,7 +9,7 @@ module.exports = function(options, fcw, logger) {
      */
     var enrollObj = null;
 
-    async function connection() {
+    const teste = async () => {
         const { FileSystemWallet, Gateway } = require('fabric-network');
         const fs = require('fs');
         var path = require('path');
@@ -45,7 +45,7 @@ module.exports = function(options, fcw, logger) {
         return network;
       }
 
-    var chainCodeEnroll =  async function(cb) {
+    var chainCodeEnroll =   function(cb) {
         console.log('TTTTTTT conection unction chainCodeEnroll');
             // fcw.chainCodeEnroll(null,function(errCode, obj) {
             //        console.log('#####function chainCodeEnroll obj',obj)
@@ -56,7 +56,7 @@ module.exports = function(options, fcw, logger) {
             //});
             //console.log('resp',enrollObj);
             
-            await connection();
+            teste();
             
             console.log('AAAAAAAconection chainCodeEnroll',enrollObj);
     }
