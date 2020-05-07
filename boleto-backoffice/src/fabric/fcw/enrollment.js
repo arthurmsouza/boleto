@@ -12,17 +12,7 @@ module.exports = function(logger) {
     const ccp = JSON.parse(ccpJSON);
 
     async function connection() {
-        // Create a new gateway for connecting to our peer node.
-        const gateway = new Gateway();
-        await gateway.connect(ccp, { wallet, identity: 'user1', discovery: { enabled: true, asLocalhost: false } });
 
-        // Get the network (channel) our contract is deployed to.
-        const network = await gateway.getNetwork('mychannel');
-        return network;
-      }
-
-    var chainCodeEnroll = function (options,cb){
-    try { 
         // Create a new file system based wallet for managing identities.
         const walletPath = path.join(process.cwd(), 'wallet');
         const wallet = new FileSystemWallet(walletPath);
@@ -34,9 +24,23 @@ module.exports = function(logger) {
             console.log('An identity for the user "user1" do not exists in the wallet');
             return;
         }
-        
-        // Get the contract from the network.
+
+        // Create a new gateway for connecting to our peer node.
+        const gateway = new Gateway();
+        await gateway.connect(ccp, { wallet, identity: 'user1', discovery: { enabled: true, asLocalhost: false } });
+
+        // Get the network (channel) our contract is deployed to.
+        const network = await gateway.getNetwork('mychannel');
+
+         // Get the contract from the network.
         //const contract = network.getContract('boleto');
+        
+        return network;
+      }
+
+    var chainCodeEnroll = function (options,cb){
+    try { 
+       
         var network = connection();
         console.log('###retornando network', network);
         if(cb) cb(null, { network: network, submitter: submitter })
@@ -47,9 +51,6 @@ module.exports = function(logger) {
     }
 
     }
-
-    
-    //getUser().catch(err => console.error(err));
            
     return {
         chainCodeEnroll: chainCodeEnroll
