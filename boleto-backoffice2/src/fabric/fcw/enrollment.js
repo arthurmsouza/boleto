@@ -91,7 +91,7 @@ module.exports = function(logger) {
 	        crypto_suite.setCryptoKeyStore(crypto_store);
             client.setCryptoSuite(crypto_suite);
             
-            return getSubmitter(client, enrollmentObj); //do most of the work here
+            return getSubmitter(client, enrollmentObj, crypto_suite); //do most of the work here
         }).then(function(submitter) {
 
             chain.addOrderer(new Orderer(enrollmentObj.orderer_url, {
@@ -137,7 +137,7 @@ module.exports = function(logger) {
     }
 
     // Get Submitter - ripped this function off from fabric-client (from marbles example)
-    function getSubmitter(client, enrollmentObj) {
+    function getSubmitter(client, enrollmentObj, crypto_suite) {
         var member;
         console.log('####enroll submitter',enrollmentObj.enroll_id);
         return client.getUserContext(enrollmentObj.enroll_id).then((user) => {
