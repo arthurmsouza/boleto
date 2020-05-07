@@ -93,12 +93,12 @@ module.exports = function(logger) {
             
             return getSubmitter(client, enrollmentObj, crypto_suite); //do most of the work here
         }).then(function(submitter) {
-            console.log(client);
+            console.log('##ADD Orderer');
             chain.addOrderer(new Orderer(enrollmentObj.orderer_url, {
                 pem: enrollmentObj.pem,
                 'ssl-target-name-override': enrollmentObj.common_name //can be null if cert matches hostname
             }));
-
+            console.log('##ADD Peer');
             try {
                 for (var i in enrollmentObj.peer_urls) {
                     chain.addPeer(new Peer(enrollmentObj.peer_urls[i], {

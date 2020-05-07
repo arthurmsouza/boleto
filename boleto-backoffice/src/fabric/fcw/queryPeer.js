@@ -48,6 +48,7 @@ module.exports = function(logger) {
         var chain = obj.chain;
 
         // send proposal to peer
+        console.log('QueryInfo');
         chain.queryInfo().then(
             function(chain_resp) {
                 chain_resp.currentBlockHash = buffer2hexstr(chain_resp.currentBlockHash.buffer);
