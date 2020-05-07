@@ -84,6 +84,13 @@ module.exports = function(logger) {
             path: store_path 
         }).then(function(store) {
             client.setStateStore(store);
+            var crypto_suite = Fabric_Client.newCryptoSuite();
+	        // use the same location for the state store (where the users' certificate are kept)
+	        // and the crypto store (where the users' keys are kept)
+	        var crypto_store = Fabric_Client.newCryptoKeyStore({path: store_path});
+	        crypto_suite.setCryptoKeyStore(crypto_store);
+            fabric_client.setCryptoSuite(crypto_suite);
+            
             return getSubmitter(client, enrollmentObj); //do most of the work here
         }).then(function(submitter) {
 
