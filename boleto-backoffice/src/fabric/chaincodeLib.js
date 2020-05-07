@@ -18,6 +18,7 @@ module.exports = function(options, fcw, logger) {
                     if (cb) cb(null);
                 
             });
+            console.log('AAAAAAAfunction chainCodeEnroll',enrollObj);
     }
 
     /**
