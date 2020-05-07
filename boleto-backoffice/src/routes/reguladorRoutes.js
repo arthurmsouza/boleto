@@ -2,9 +2,9 @@ var express = require('express');
 
 var reguladorRouter = express.Router();
 
-var router = function(logger) {
+var router = function(logger, chaincodeLib) {
 
-    var reguladorController = require('../controller/reguladorController')(logger);
+    var reguladorController = require('../controller/reguladorController')(logger, chaincodeLib);
     // assegura as rotas através de um middleware
     reguladorRouter.use(reguladorController.middleware);
 

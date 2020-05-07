@@ -112,7 +112,7 @@ var authRouter = require('./src/routes/authRoutes.js')(logger);
 
 var propostaRouter = require('./src/routes/propostaRoutes')(logger, chaincodeLib);
 var ifRouter = require('./src/routes/ifRoutes')(logger, chaincodeLib);
-var reguladorRouter = require('./src/routes/reguladorRoutes')(logger);
+var reguladorRouter = require('./src/routes/reguladorRoutes')(logger, chaincodeLib);
 
 /*
  * Routing Configuration

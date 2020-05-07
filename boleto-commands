@@ -1,0 +1,13 @@
+export GOROOT=$HOME/go
+export GOPATH=$HOME/fabric-samples
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+
+docker-compose -f docker-compose.yml up -d cli
+docker exec -it cli bash
+
+##Boleto
+peer chaincode install -p github.com/boleto/go -n boleto -v 0 
+peer chaincode instantiate -o orderer.example.com:7050 -C mychannel -c '{"Args":["init"]}' -n boleto -v 0
+
+peer chaincode invoke -n boleto -c '{"Args":["criarPessoa", "netsell", "netsell", "31178923211"]}' -C mychannel
+peer chaincode invoke -n boleto -c '{"Args":["consultarPessoa", "netsell"]}' -C mychannel

@@ -72,7 +72,8 @@ var reguladorController = function(logger) {
      * @param {*} cb 
      */
     var listarAceites = function(assinatura, cb) {
-
+        console.log('#####CB',cb)
+        console.log('#####ChaincodeLib',chaincodeLib)
         //chamada para SDK HyperLedger passando assinatura retorna lista de aceites no Ledger
         if (assinatura) {
             chaincodeLib.consultarAceite(assinatura, function(error, resposta) {
