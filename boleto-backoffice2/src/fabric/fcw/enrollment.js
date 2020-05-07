@@ -132,6 +132,7 @@ module.exports = function(logger) {
     // Get Submitter - ripped this function off from fabric-client (from marbles example)
     function getSubmitter(client, enrollmentObj) {
         var member;
+        console.log('####enroll submitter',enrollmentObj.enroll_id);
         return client.getUserContext(enrollmentObj.enroll_id).then((user) => {
             if (user && user.isEnrolled()) {
                 logger.info('[fcw] Successfully loaded member from persistence');
