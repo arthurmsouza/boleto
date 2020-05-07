@@ -16,14 +16,16 @@ module.exports = function(logger) {
         // Create a new file system based wallet for managing identities.
         const walletPath = path.join(process.cwd(), 'wallet');
         const wallet = new FileSystemWallet(walletPath);
-        console.log(`Wallet path: ${walletPath}`);
+        console.log(`tWallet path: ${walletPath}`);
         logger.debug('Debug');
         // Check to see if we've already enrolled the user.
+        console.log('####user');
         const userExists = await wallet.exists('user1');
         if (!userExists) {
             console.log('An identity for the user "user1" do not exists in the wallet');
             return;
         }
+        console.log('####user',userExists);
         console.log('####gateway');
         // Create a new gateway for connecting to our peer node.
         const gateway = new Gateway();
