@@ -58,8 +58,8 @@ module.exports = function(g_options, logger) {
             //    pem: options.pem,
             //    'ssl-target-name-override': options.common_name || null //can be null if cert matches hostname
             //});
-            console.log(eventhub)
-            eventhub.connect(null,null);
+            console.log('###EventHub'eventhub)
+            //eventhub.connect(null,null);
         } else {
             logger.debug('[fcw] will not use tx event');
         }
