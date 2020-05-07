@@ -1,25 +1,12 @@
 module.exports = function(g_options, logger) {
     var utils = require('fabric-client/lib/utils.js');
-    //var EventHub = require('fabric-client/lib/EventHub.js');
     var common = require('./common.js')(logger);
 
     if (!g_options) g_options = {};
     if (!g_options.block_delay) g_options.block_delay = 10000;
 
 
-    /*
-    	options: {
-    				channel_id: "channel id",
-    				chaincode_id: "chaincode id",
-    				chaincode_version: "v0",
-    				event_url: "peers event url",			<optional>
-    				endorsed_hook: function(error, res){},	<optional>
-    				ordered_hook: function(error, res){},	<optional>
-    				cc_function: "function_name",
-    				cc_args: ["argument 1"],
-    				pem: 'complete tls certificate'			<optional>
-    	}
-    */
+   
     var invoke = function(obj, options, cb) {
         logger.debug('[fcw] Invoking Chaincode: ' + options.cc_function + '()');
         var eventhub;
@@ -27,40 +14,7 @@ module.exports = function(g_options, logger) {
         var nonce = utils.getNonce();
         var cbCalled = false;
 
-        // send proposal to endorser
-        var request = {
-            chainId: options.channel_id,
-            chaincodeId: options.chaincode_id,
-            chaincodeVersion: options.chaincode_version,
-            fcn: options.cc_function,
-            args: options.cc_args,
-            txId: chain.buildTransactionID(nonce, obj.submitter),
-            nonce: nonce,
-        };
-        logger.debug('[fcw] Sending invoke req', request);
-
-        // Setup EventHub
-        if (options.event_url) {
-            logger.debug('[fcw] listening to event url', options.event_url);
-            //eventhub = new EventHub();
-            //const data = fs.readFileSync(path.join(__dirname, 'somepath/tlscacerts/org1.example.com-cert.pem'));
-            //const peer = client.newPeer(
-            //    'grpcs://localhost:7051',
-            //    {
-            //        pem: Buffer.from(data).toString(),
-            //        'ssl-target-name-override': 'peer0.org1.example.com'
-            //    }
-            //);
-            const data = channel.newChannelEventHub(peer);
-            const eventhub = chain.getChannelEventHubsForOrg();
-            eventhub.setPeerAddr(options.event_url, {
-                pem: options.pem,
-                'ssl-target-name-override': options.common_name || null //can be null if cert matches hostname
-            });
-            eventhub.connect();
-        } else {
-            logger.debug('[fcw] will not use tx event');
-        }
+       
 
         // Send Proposal
         chain.sendTransactionProposal(request).then(function(results) {

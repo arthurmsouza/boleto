@@ -29,7 +29,7 @@ var async = require('async');
 var winston = require('winston');
 
 // Setting logger
-var logger = new(winston.Logger)({
+var logger = winston.createLogger({
     level: 'debug',
     transports: [
         new(winston.transports.Console)({
@@ -64,22 +64,54 @@ var fcw = require('./src/fabric/fcw/index')({
  * enroll an admin with the CA
  */
 // Initializing Chaincode Library
-chaincodeLib = require('./src/fabric/chaincodeLib')(options, fcw, logger);
-// enrolling admin
-chaincodeLib.enrollAdmin(1, function(e) {
-    if (e == null) {
-        logger.info("[chaincodeLib] Autenticado");
-    }
-});
-
+var chaincodeLib = require('./src/fabric/chaincodeLib')(options, fcw, logger);
+console.log('Inicializando chaincodeLib',chaincodeLib);
+// enrolling admin`
+console.log('connection1')
+///chaincodeLib.connection();
+console.log('connection2')
+//chaincodeLib.chainCodeEnroll(null);
+console.log('#######Inicialializado chaincodeLib',chaincodeLib);
 // websocket
 var wss = require('./src/websocket/serverSide')(logger, chaincodeLib);
 
 // create a new express server
 var app = express();
 
+const helloAsync = async () => {
+    /*2.*/ console.log("Hello Async")
+    const walletPath = path.join(process.cwd(), 'wallet');
+        const wallet = new FileSystemWallet(walletPath);
+        console.log(`Wallet path: ${walletPath}`);
+// Check to see if we've already enrolled the user.
+        const userExists = await wallet.exists('user1');
+        if (!userExists) {
+            console.log('An identity for the user "user1" does not exist in the wallet');
+            console.log('Run the registerUser.js application before retrying');
+            return;
+        }
+// Create a new gateway for connecting to our peer node.
+        const gateway = new Gateway();
+        await gateway.connect(ccp, { wallet, identity: 'user1', discovery: { enabled: false } });
+// Get the network (channel) our contract is deployed to.
+        const network = await gateway.getNetwork('mychannel');
+// Get the contract from the network.
+        const contract = network.getContract('boleto');
+        console.log('ok');
+}
+
+// Setting for Hyperledger Fabric
+const { FileSystemWallet, Gateway } = require('fabric-network');
+const fs = require('fs');
+const ccpPath = path.resolve(__dirname, '..', '..', 'basic-network', 'connection.json');
+const ccpJSON = fs.readFileSync(ccpPath, 'utf8');
+const ccp = JSON.parse(ccpJSON);
+
+helloAsync();
 //api = require('./src/routes/api'),
+
 app.use(cors())
+
 // serve the files out of ./public as our main files
 app.use(express.static(__dirname + '/public'));
 
@@ -113,7 +145,7 @@ var authRouter = require('./src/routes/authRoutes.js')(logger);
 
 var propostaRouter = require('./src/routes/propostaRoutes')(logger, chaincodeLib);
 var ifRouter = require('./src/routes/ifRoutes')(logger, chaincodeLib);
-var reguladorRouter = require('./src/routes/reguladorRoutes')(logger);
+var reguladorRouter = require('./src/routes/reguladorRoutes')(logger, chaincodeLib);
 
 /*
  * Routing Configuration

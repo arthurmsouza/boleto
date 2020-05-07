@@ -9,35 +9,56 @@ module.exports = function(options, fcw, logger) {
      */
     var enrollObj = null;
 
-    /**
-     * Enroll an user admin in order to make requests
-     * @param {*} attempt quantity of attempts
-     * @param {*} cb 
-     */
-    var enrollAdmin = function(attempt, cb) {
-        fcw.enroll(options.creds.credentials, function(errCode, obj) {
-            if (errCode != null) {
-                logger.error('could not enroll...');
-                attempt = 0;
-                // --- Try Again ---  //
-                if (attempt >= 2) {
-                    if (cb) cb(errCode);
-                } else {
-                    try {
-                        logger.warn('removing older kvs and trying to enroll again');
-                        rmdir(makeKVSpath()); //delete old kvs folder
-                        logger.warn('removed older kvs');
-                        enrollAdmin(++attempt, cb);
-                    } catch (e) {
-                        logger.error('could not delete old kvs', e);
-                    }
-                }
-            } else {
-                // uptading enrollObject with authentication parameters
-                enrollObj = obj;
-                if (cb) cb(null);
-            }
-        });
+    const teste = async () => {
+        const { FileSystemWallet, Gateway } = require('fabric-network');
+        const fs = require('fs');
+        var path = require('path');
+        const ccpPath = path.resolve(__dirname, '..', '..', '..', '..','basic-network', 'connection.json');
+        const ccpJSON = fs.readFileSync(ccpPath, 'utf8');
+        const ccp = JSON.parse(ccpJSON);
+
+        // Create a new file system based wallet for managing identities.
+        const walletPath = path.join(process.cwd(), 'wallet');
+        const wallet = new FileSystemWallet(walletPath);
+        console.log(`xxxWallet path: ${walletPath}`);
+       
+        // Check to see if we've already enrolled the user.
+        console.log('####user');
+        const userExists = await wallet.exists('user1');
+        console.log('####use2',userExists);
+        if (!userExists) {
+            console.log('An identity for the user "user1" do not exists in the wallet');
+            return;
+        }
+        console.log('####user',userExists);
+        console.log('####gateway');
+        // Create a new gateway for connecting to our peer node.
+        const gateway = new Gateway();
+        await gateway.connect(ccp, { wallet, identity: 'user1', discovery: { enabled: true, asLocalhost: false } });
+        console.log('####gateway fim');
+        // Get the network (channel) our contract is deployed to.
+        const network = await gateway.getNetwork('mychannel');
+        console.log('####network async', network);
+         // Get the contract from the network.
+        //const contract = network.getContract('boleto');
+        
+        return network;
+      }
+
+    var chainCodeEnroll =   function(cb) {
+        console.log('TTTTTTT conection unction chainCodeEnroll');
+            // fcw.chainCodeEnroll(null,function(errCode, obj) {
+            //        console.log('#####function chainCodeEnroll obj',obj)
+            //        // uptading enrollObject with authentication parameters
+            //        enrollObj = obj;
+            //        if (cb) cb(null);
+                
+            //});
+            //console.log('resp',enrollObj);
+            
+            teste();
+            
+            console.log('AAAAAAAconection chainCodeEnroll',enrollObj);
     }
 
     /**
@@ -48,13 +69,7 @@ module.exports = function(options, fcw, logger) {
     var cadastrarAceite = function(aceiteProposta, cb) {
         console.log('');
         logger.info('Cadastrando um aceite...');
-        if (enrollObj == null) {
-
-            logger.error('enrollObj is null. Enroll an user first.');
-            return cb({
-                error: 'enrollObj not defined'
-            }, null);
-        }
+       
 
         var jsonAceiteProposta = JSON.stringify(aceiteProposta);
 
@@ -70,7 +85,7 @@ module.exports = function(options, fcw, logger) {
             pem: options.creds.credentials.tls_certificates.cert_1.pem
         };
 
-        fcw.invokeChaincode(enrollObj, opts, cb);
+        fcw.invokeChaincode(chainCode, opts, cb);
     };
 
     /**
@@ -89,7 +104,7 @@ module.exports = function(options, fcw, logger) {
             cc_function: 'consultar_aceite',
             cc_args: [assinaturaIFBeneficiario]
         };
-        fcw.queryChaincode(enrollObj, opts, function(err, resp) {
+        fcw.queryChaincode(chainCode, opts, function(err, resp) {
             if (err != null) {
                 if (cb) return cb(err, resp);
             } else {
@@ -120,7 +135,7 @@ module.exports = function(options, fcw, logger) {
             cc_function: 'consultar_boletos_n_pagos',
             cc_args: [assinaturaIFBeneficiario]
         };
-        fcw.queryChaincode(enrollObj, opts, function(err, resp) {
+        fcw.queryChaincode(chainCode, opts, function(err, resp) {
             if (err != null) {
                 if (cb) return cb(err, resp);
             } else {
@@ -142,10 +157,10 @@ module.exports = function(options, fcw, logger) {
      */
     var registrarPagamentoBoleto = function(args, cb) {
         logger.info('Registrando o pagamento do boleto...');
-        if (enrollObj == null) {
+        if (chainCode == null) {
 
-            logger.error('enrollObj is null. Enroll an user first.');
-            return cb({ error: 'enrollObj not defined' }, null);
+            logger.error('chainCode is null. Enroll an user first.');
+            return cb({ error: 'chainCode not defined' }, null);
         }
 
         var opts = {
@@ -160,17 +175,22 @@ module.exports = function(options, fcw, logger) {
             pem: options.creds.credentials.tls_certificates.cert_1.pem
         };
 
-        fcw.invokeChaincode(enrollObj, opts, cb);
+        fcw.invokeChaincode(chainCode, opts, cb);
     };
 
     // get block height
     var channelStats = function(cb) {
-        logger.debug('Consultando blockchain height...');
-        fcw.queryChannel(enrollObj, null, cb);
+        console.log('########fcw',fcw);
+        logger.debug('Consultando blockchain height...teste');
+        console.log('########cb',cb);
+        this.chainCodeEnroll();
+        var network=enrollObj;
+        console.log('@@@@@@@@@network',network);
+        fcw.queryChannel(network, null, cb);
     };
 
     return {
-        enrollAdmin: enrollAdmin,
+        chainCodeEnroll :chainCodeEnroll,
         cadastrarAceite: cadastrarAceite,
         consultarAceite: consultarAceite,
         consultarBoletosNaoPagos: consultarBoletosNaoPagos,

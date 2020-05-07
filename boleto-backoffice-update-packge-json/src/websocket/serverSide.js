@@ -7,40 +7,30 @@ var ws = require('ws');
 var wss = null;
 const KEEP_ALIVE = 30000; // 30 seconds to authenticate
 
-var websocketServer = function(logger, chaincodeLib) {
+
+var websocketServer = function(logger, chaincodeLibp) {
     var enrollInterval;
     var checkPerodically;
 
+    console.log('parametro serverside',chaincodeLibp)
+     
     var knownHeight = 0;
     /**
      * Setup web server
      * @param {*} server 
      */
-    var setup = function(server, cb) {
+    var setup = function(server) {
         /**
          * Enrolling on Blockchain Network to listen to events (Repeating event)
          */
-        chaincodeLib.enrollAdmin(1, function(error) {
-            if (error != null) {
-                logger.error('Could not enroll');
-            } else {
+        var chaincodeObj = chaincodeLibp;
+        console.log('serverside teste chaincode',chaincodeObj);
+            if (chaincodeObj != null) {
                 logger.debug("Usuario autenticado (websocket)");
                 listenToBlockchainEvents();
-
-                // --- Repeat --- / /
-                clearInterval(enrollInterval);
-                enrollInterval = setInterval(function() { //to avoid REQUEST_TIMEOUT errors we periodically re-enroll
-                    chaincodeLib.enrollAdmin(1, function(error) {
-                        if (error != null) {
-                            logger.error('Could not enroll');
-                        } else {
-                            logger.debug('Enrolled succesfully (websocket)');
-                        }
-                    });
-                }, KEEP_ALIVE); //timeout happens at 5 minutes, so this interval should be faster than that
-
+            } else {
+                logger.error('Could not enroll');
             }
-        });
         /**
          * Websocket setup
          */
@@ -105,7 +95,7 @@ var websocketServer = function(logger, chaincodeLib) {
      * Check for Updates to Ledger 
      */
     var checkForUpates = function() {
-        chaincodeLib.channelStats(function(err, resp) {
+        chaincodeLibp.channelStats(function(err, resp) {
             var newBlock = false;
             if (err != null) {
                 var eobj = {

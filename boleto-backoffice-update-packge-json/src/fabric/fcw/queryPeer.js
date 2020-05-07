@@ -45,7 +45,8 @@ module.exports = function(logger) {
     */
     query_peer.query_channel = function(obj, options, cb) {
         logger.debug('[fcw] Querying Channel Stats:');
-        var chain = obj.chain;
+        console.log('#####obj network',obj)
+        var chain = obj.getChannel();
 
         // send proposal to peer
         chain.queryInfo().then(

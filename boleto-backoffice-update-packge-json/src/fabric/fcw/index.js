@@ -4,13 +4,13 @@ module.exports = function(g_options, logger) {
     var invokeCC = require('./invokeCC')(g_options,logger);
 	var queryPeer = require('./queryPeer.js')(logger);
 
-    /*
+
+        /*
      * Enrollment functions
     */
-    var enroll = function(options, callback) {
-        enrollment.enroll(options, callback);
+    var chainCodeEnroll =  async function(options, callback) {
+        await enrollment.chainCodeEnroll(options, callback);
     };
-
     /**
      * Query Chaincode
      */
@@ -33,7 +33,7 @@ module.exports = function(g_options, logger) {
 	};
     
     return {
-        enroll: enroll,
+        chainCodeEnroll : chainCodeEnroll,
         queryChaincode: queryChaincode,
         invokeChaincode: invokeChaincode,
         queryChannel: queryChannel

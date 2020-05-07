@@ -7,35 +7,33 @@
         "test": "mocha --no-timeouts"
     },
     "dependencies": {
-        "async": "3.2.0",
-        "body-parser": "1.19.0",
-        "cfenv": "1.2.2",
-        "cookie-parser": "^1.4.5",
-        "cors": "^2.8.5",
-        "ejs": "3.1.2",
-        "express": "4.17.1",
-        "express-session": "^1.17.1",
-        "fabric-ca-client": "^2.1.0",
-        "fabric-client": "1.4.8",
-        "fabric-network": "1.4.8",
+        "async": "^2.3.0",
+        "body-parser": "^1.17.1",
+        "cfenv": "1.0.x",
+        "cookie-parser": "^1.4.3",
+        "ejs": "^2.5.6",
+        "express": "4.13.x",
+        "express-session": "^1.15.2",
+        "fabric-ca-client": "1.0.0-alpha.0",
+        "fabric-client": "1.0.0-alpha",
         "fs": "0.0.1-security",
-        "grpc": "1.24.2",
-        "moment": "^2.25.3",
+        "grpc": "1.2.4",
+        "moment": "^2.18.1",
         "os": "^0.1.1",
-        "passport": "^0.4.1",
+        "passport": "^0.3.2",
         "passport-local": "^1.0.0",
-        "winston": "^3.2.1",
-        "ws": "^7.2.5"
+        "winston": "^2.3.1",
+        "ws": "^2.2.3"
     },
     "repository": {},
     "engines": {
-        "node": "^8.16.2"
+        "node": "^6.2.0"
     },
     "devDependencies": {
-        "assert": "^2.0.0",
-        "chai": "^4.2.0",
-        "chai-http": "^4.3.0",
-        "mocha": "^7.1.2",
-        "mocha-parallel-tests": "^2.3.0"
+        "assert": "^1.4.1",
+        "chai": "^3.5.0",
+        "chai-http": "^3.0.0",
+        "mocha": "^3.3.0",
+        "mocha-parallel-tests": "^1.2.9"
     }
 }
