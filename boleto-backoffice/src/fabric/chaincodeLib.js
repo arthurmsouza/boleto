@@ -10,9 +10,16 @@ module.exports = function(options, fcw, logger) {
     var enrollObj = null;
 
     var chainCodeEnroll = function() {
-            fcw.chainCodeEnroll(null,obj)
-            console.log('#####function chainCodeEnroll obj',obj)
-            enrollObj=obj
+            fcw.chainCodeEnroll(null,function(errCode, obj) {
+                if (errCode != null) {
+                    logger.error('could not enroll...');
+                } else {
+                    console.log('#####function chainCodeEnroll obj',obj)
+                    // uptading enrollObject with authentication parameters
+                    enrollObj = obj;
+                    if (cb) cb(null);
+                }
+            });
     }
 
     /**
