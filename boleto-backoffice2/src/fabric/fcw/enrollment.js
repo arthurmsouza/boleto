@@ -77,7 +77,7 @@ module.exports = function(logger) {
         console.log('######o homedir',os.homedir());
         console.log('######o homedir',enrollmentObj);
         
-        var store_path = path.join(os.homedir(), 'hfc-key-store') //store eCert in the kvs directory
+        var store_path = path.join(__dirname, 'fabric-samples/boleto/boleto-backoffice2/hfc-key-store') //store eCert in the kvs directory
         console.log('Store path:'+store_path);
         // Make eCert kvs (Key Value Store)
         HFC.newDefaultKeyValueStore({
@@ -139,6 +139,7 @@ module.exports = function(logger) {
             } else {
 
                 // Need to enroll it with CA server
+                console.log('###CA',enrollmentObj.ca_url);
                 var ca_client = new CaService(enrollmentObj.ca_url);
                 logger.debug('id', enrollmentObj.enroll_id, 'secret', enrollmentObj.enroll_secret); //dsh todo remove this
                 logger.debug('msp_id', enrollmentObj.msp_id);
