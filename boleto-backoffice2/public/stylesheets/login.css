@@ -1,0 +1,136 @@
+@import "https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic&subset=latin,cyrillic";
+
+html, body, .page, .login-page {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  transition: all .3s cubic-bezier(.5, .2, .2, 1.1);
+  -webkit-transition: all .3s cubic-bezier(.5, .2, .2, 1.1);
+  -moz-transition: all .3s cubic-bezier(.5, .2, .2, 1.1);
+  -o-transition: all .3s cubic-bezier(.5, .2, .2, 1.1);  
+  overflow: hidden; 
+  text-decoration: none !important;
+}
+
+* {
+  font-family: 'RobotoDraft', 'Roboto', 'Helvetica Neue, Helvetica, Arial', sans-serif;
+  text-decoration: none;
+}
+
+.page {
+    position: absolute;
+    animation-name: fadeIn;
+    animation-duration: 0.5s;
+    transition-timing-function: ease-out;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+.form {
+  position: absolute;
+  z-index: 3;
+  top: 25%; left: 0; bottom: 0; right: 0;
+  margin: auto;
+  background:transparent;
+  border-radius: 5px;
+  width: 18.5em;
+  height: 25em;
+  text-align: center;
+
+}
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin-bottom: 1em;
+  border-radius: 7px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+   text-indent: 20px;
+}
+
+.logo-img {
+  width: 9em;
+  height: 6.5em;
+  position: absolute;
+  margin: auto;
+  top: -25em; left: 0; right: 0; bottom: 0;
+}
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 300px;
+}
+.container:before, .container:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.container .info {
+  text-align: center;
+}
+.container .info h1 {
+  padding: 0;
+  font-size: 36px;
+  font-weight: 300;
+  color: #1a1a1a;
+}
+.container .info span {
+  color: #4d4d4d;
+  font-size: 12px;
+}
+.container .info span a {
+  color: #000000;
+  text-decoration: none;
+}
+.container .info span .fa {
+  color: #EF3B3A;
+}
+
+.bg-img {
+  width: 100%;
+  height: 100%;
+  background: url('../images/predios.jpeg') center center no-repeat;
+  background-size: cover;
+    -webkit-filter: grayscale(1); /* Old WebKit */
+  filter: grayscale(1);
+}
+.bg-img::before {
+  content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: #212121;
+	opacity: .82; 
+  }
+button:focus {
+    outline:0;
+}
+  .errspan {
+    float: left;
+    margin-left: 15px;
+    margin-top: -45px;
+    position: relative;
+    z-index: 2;
+    color: #555;
+}
+input[type="submit"]{
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  background: #e74c3c;
+  margin-top: 0.17555em;
+  border: 0;
+  padding-left: 0;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}

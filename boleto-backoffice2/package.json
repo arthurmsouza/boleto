@@ -1,0 +1,39 @@
+{
+    "name": "aciptance",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "start": "node app.js",
+        "test": "mocha --no-timeouts"
+    },
+    "dependencies": {
+        "async": "^2.3.0",
+        "body-parser": "^1.17.1",
+        "cfenv": "1.0.x",
+        "cookie-parser": "^1.4.3",
+        "ejs": "^2.5.6",
+        "express": "4.13.x",
+        "express-session": "^1.15.2",
+        "fabric-ca-client": "1.0.0-alpha.0",
+        "fabric-client": "1.0.0-alpha",
+        "fs": "0.0.1-security",
+        "grpc": "1.2.4",
+        "moment": "^2.18.1",
+        "os": "^0.1.1",
+        "passport": "^0.3.2",
+        "passport-local": "^1.0.0",
+        "winston": "^2.3.1",
+        "ws": "^2.2.3"
+    },
+    "repository": {},
+    "engines": {
+        "node": "^6.2.0"
+    },
+    "devDependencies": {
+        "assert": "^1.4.1",
+        "chai": "^3.5.0",
+        "chai-http": "^3.0.0",
+        "mocha": "^3.3.0",
+        "mocha-parallel-tests": "^1.2.9"
+    }
+}

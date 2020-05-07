@@ -1,0 +1,40 @@
+{
+    "authentication": {
+        "users": [{
+                "username": "cip",
+                "name": "CIP",
+                "password": "teste123",
+                "profile": "regulador",
+                "assinatura": "CIPcd8562d226d37128b84a8bc1aad7ea3a"
+            },
+            {
+                "username": "itau",
+                "name": "Itaú",
+                "password": "teste123",
+                "profile": "if",
+                "assinatura": "ITAUd829b5213ca8e49c2c4c1ee7629076fe"
+            },
+            {
+                "username": "bradesco",
+                "name": "Bradesco",
+                "password": "teste123",
+                "profile": "if",
+                "assinatura": "BRADESCOee7c267a30984c940d3c7a3e39c161bf"
+            },
+            {
+                "username": "bancobrasil",
+                "name": "Banco do Brasil",
+                "password": "teste123",
+                "profile": "if",
+                "assinatura": "BANCOBRASILe2dce04bc495521a8300c1d1ff78bc2d"
+            },
+            {
+                "username": "santander",
+                "name": "Santander",
+                "password": "teste123",
+                "profile": "if",
+                "assinatura": "SANTANDER8fbbf95f1e5678899cb285b6051846a7"
+            }
+        ]
+    }
+}

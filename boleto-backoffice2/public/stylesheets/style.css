@@ -1,0 +1,421 @@
+@import "https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic&subset=latin,cyrillic";
+html,
+body,
+.page {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    transition: all .3s cubic-bezier(.5, .2, .2, 1.1);
+    -webkit-transition: all .3s cubic-bezier(.5, .2, .2, 1.1);
+    -moz-transition: all .3s cubic-bezier(.5, .2, .2, 1.1);
+    -o-transition: all .3s cubic-bezier(.5, .2, .2, 1.1);
+    overflow-y: hidden;
+    text-decoration: none !important;
+}
+
+* {
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+}
+
+
+.page {
+    position: absolute;
+    animation-name: fadeIn;
+    animation-duration: 0.5s;
+    transition-timing-function: ease-out;
+}
+
+#consulta {
+    background: #f7f7f7;
+    display: block;
+    overflow-y: scroll;
+    white-space: nowrap
+}
+
+@keyframes fadeIn {
+    0% {
+        bottom: 100%;
+    }
+    100% {
+        bottom: 0;
+    }
+}
+
+#pagamento {
+    display: none;
+    overflow: scroll;
+    max-height: auto;
+    background: #f7f7f7;
+}
+
+#sidenav,
+#list_sidenav {
+                position: fixed;
+                z-index: 2;
+                bottom: 0;
+                left: 0;
+                border: none;
+                height: 100%;
+                width: 8.5em;
+                padding-top: 0;
+                padding-left: 0;
+                text-align: left;
+                background: #171717;
+                line-height: 150px;
+}
+#link-ledger {
+    margin-top: 5em;
+}
+a.svg {
+                position: relative;
+                display: inline-block;
+                cursor: pointer;
+            }
+            
+a.svg:after {
+                content: "";
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+            }
+            
+#logout label {
+    color: #fff;
+}
+.nav {
+    position: absolute;
+    top: 1.5em;
+    left: 0; right: 0;
+    display:block;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 13px;
+}
+#sidenav li{
+    display:block;
+   float:left;
+   width: 8.5em;
+   height: 6.4em;
+   padding-top: 0;
+    padding-left: 0;
+   text-align: center;
+   
+   
+}
+
+a#link-user img {
+                position: absolute;
+                margin: auto;
+                right: 0;
+                left: 0;
+                top: 1.5em;
+            }
+            
+#sidenav a.active {
+    -webkit-box-shadow:inset -8px 0px 0px 0px #fff;
+    -moz-box-shadow:inset 8px 0px 0px 0px #fff;
+    box-shadow:inset 8px 0px 0px 0px #fff;
+
+            }
+            
+a#logout {
+                position: absolute;
+                margin: auto;
+                left: 0;
+                right: 0;
+                top: 3em;
+            }
+a#link-user.svg.active {
+                border-left: none;
+            }
+            
+a#link-user.svg {
+                background: #000;
+                width: 100%;
+                height: 6.5em;
+    }
+        
+
+#tab,
+#tab1 {
+    font-size: 12px;
+    width: 77.5%;
+    margin-left: 15%;
+    overflow: auto;
+    text-align: left;
+    background: #fff;
+    position: absolute;
+    right: 5%;
+    top: 21.5%;
+    border-radius: 15px;
+    border-spacing: 0 2px;
+    color: #737373;
+    margin-bottom: 4em;
+    box-shadow: 0 1px 3px #e3e3e3, 0 1px 2px #ccc;
+    line-height: 15px;
+}
+
+#tab th,
+#tab1 th {
+    height: 50px;
+}
+
+#tab1 tr,
+#tab1 th,
+#tab tr,
+#tab th {
+    text-align: center;
+    width: 19.375%;
+    border-bottom: 1.5px solid #e3e3e3;
+}
+
+#tab td,
+#tab1 td {
+    border-bottom: 1.5px solid #e3e3e3;
+    border-left: 1.5px solid #e3e3e3;
+    padding: 2px;
+}
+
+#tab tbody>tr:last-child>td,
+#tab1 tbody>tr:last-child>td {
+    border-bottom: 0;
+}
+
+#tab tr:hover,
+#tab1 tr:hover {
+    background: #f1f1f1;
+}
+
+#tab thead tr:hover,
+#tab1 thead tr:hover {
+    background: #ffffff;
+    color: #212121;
+}
+
+h2 {
+    position: absolute;
+    left: 17.5%;
+    top: 1%;
+    margin-bottom: 1em;
+    z-index: 2;
+    font-size: 17px;
+    text-transform: uppercase;
+    color: #737373;
+}
+
+#modal {
+    width: 25%;
+    height: 10em;
+    background-color: #fff;
+    word-wrap: break-word;
+    font-weight: 600;
+    text-align: left;
+    padding: 3em 1em 0 1em;
+    border-radius: 15px;
+    display: none;
+    position: fixed;
+    margin: auto;
+    top: -30%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 4;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.6);
+}
+
+.btn_modal {
+    position: absolute;
+    top: 60%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    width: 3.5em;
+    height: 2em;
+    background-color: #e74c3c;
+    box-shadow: 0px 3px 0px 0px #CE3323;
+}
+
+#mask {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 3;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.85);
+    /* Black w/ opacity */
+}
+
+.expandRow {
+    display: table-row !important ;
+    width: auto;
+    line-height: 5em;
+    margin: 0 auto;
+}
+.collapseRow {
+    display: none !important ;
+    width: auto;
+    line-height: 5em;
+    margin: 0 auto;
+}
+.expandRow:hover {
+    background: #fff;
+}
+
+.expand,
+input[type="button"] {
+    height: 30px;
+    width: 120px;
+    text-align: center;
+    font-size: 12px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    margin: 10px;
+    border-radius: 30px;
+    background-color: #e74c3c;
+    box-shadow: 0px 3px 0px 0px #CE3323;
+}
+
+.expand:active,
+input[type="button"]:active {
+    transform: translate(0px, 5px);
+    -webkit-transform: translate(0px, 5px);
+    box-shadow: 0px 1px 0px 0px;
+}
+
+.expand:hover,
+input[type="button"]:hover {
+    background-color: #FF6656;
+}
+
+[data-tooltip] {
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+}
+
+
+/* Hide the tooltip content by default */
+
+[data-tooltip]:before,
+[data-tooltip]:after {
+    visibility: hidden;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+/* Position tooltip above the element */
+
+[data-tooltip]:before {
+    position: absolute;
+    bottom: 150%;
+    left: 50%;
+    margin-bottom: 5px;
+    margin-left: -80px;
+    padding: 7px;
+    width: auto;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background-color: #171717;
+    color: #fff;
+    content: attr(data-tooltip);
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+
+/* Triangle hack to make tooltip look like a speech bubble */
+
+[data-tooltip]:after {
+    position: absolute;
+    bottom: 150%;
+    left: 50%;
+    margin-left: -5px;
+    width: 0;
+    border-top: 5px solid #000;
+    border-top: 5px solid hsla(0, 0%, 20%, 0.9);
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    content: " ";
+    font-size: 0;
+    line-height: 0;
+}
+
+
+/* Show tooltip content on hover */
+
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after {
+    visibility: visible;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);
+    opacity: 1;
+}
+
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+#search,
+#search02 {
+    width: 77.5%;
+    font-size: 16px;
+    background-color: #fff;
+    background-image: url('../images/search.png');
+    background-size: 18px 18px;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    border-style: none;
+    -webkit-appearance: none;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+    box-shadow: none;
+    z-index: 1;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px #e3e3e3, 0 1px 1px #ccc;
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    margin-left: 15%;
+}
+
+#search:focus,
+#search02:focus {
+    outline: 0;
+}
+
+button:focus {
+    outline: 0;
+}
+
+html.wait,
+html.wait * {
+    cursor: wait;
+}
