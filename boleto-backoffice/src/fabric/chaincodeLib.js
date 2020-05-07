@@ -10,11 +10,9 @@ module.exports = function(options, fcw, logger) {
     var enrollObj = null;
 
     var chainCodeEnroll = function() {
-        ;(async () => {
             fcw.chainCodeEnroll(null,obj)
             console.log('#####function chainCodeEnroll obj',obj)
             enrollObj=obj
-          })()
     }
 
     /**
