@@ -19,7 +19,8 @@ module.exports = function(logger) {
             chaincodeVersion: options.chaincode_version,
             fcn: options.cc_function,
             args: options.cc_args,
-            txId: chain.buildTransactionID(nonce, obj.submitter),
+            //txId: chain.buildTransactionID(nonce, obj.submitter),
+            txId: nonce,
             nonce: nonce,
         };
         logger.debug('[fcw] Sending query req', request);
