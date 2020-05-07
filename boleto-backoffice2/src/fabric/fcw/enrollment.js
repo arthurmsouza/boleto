@@ -37,7 +37,7 @@ module.exports = function(logger) {
         // setting enrollment object
         var enrollmentObj = {
             channel_id: options.app.channel_id,
-            uuid: 'CIPvNext - Aciptance' + options.network_id + '-' + options.app.channel_id + '-' + options.peers[0].name,
+            uuid: options.peers[0].name,
             ca_url: options.cas[0].api,
             orderer_url: options.orderers[0].discovery,
             peer_urls: [options.peers[0].discovery],
@@ -78,7 +78,7 @@ module.exports = function(logger) {
         console.log('######o homedir',enrollmentObj),
         // Make eCert kvs (Key Value Store)
         HFC.newDefaultKeyValueStore({
-            path: path.join(os.homedir(), '.wallet/' + enrollmentObj.uuid) //store eCert in the kvs directory
+            path: path.join(os.homedir(), '.hfc-key-store/' + enrollmentObj.uuid) //store eCert in the kvs directory
         }).then(function(store) {
             client.setStateStore(store);
             return getSubmitter(client, enrollmentObj); //do most of the work here
