@@ -7,14 +7,13 @@ module.exports = function(options, fcw, logger) {
     /**
      * Authentication object obtained after enrollment
      */
-
-     var chaincode = null;
+    var enrollObj = null;
 
     var chainCodeEnroll = function() {
         ;(async () => {
             const obj = await fcw.chainCodeEnroll()
-            console.log('#####function chainCodeEnroll',obj)
-            chaincode=obj
+            console.log('#####function chainCodeEnroll obj',obj)
+            enrollObj=obj
           })()
     }
 
