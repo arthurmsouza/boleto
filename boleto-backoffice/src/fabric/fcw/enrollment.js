@@ -49,7 +49,7 @@ module.exports = function(logger) {
             console.log('###retornando network', network);
             if(cb) cb(null, {network: network})
             return;
-        })
+        });
         console.log('####network asyn teste fim');
     } catch (error) {
         console.error(`Failed to evaluate transaction: ${error}`); 
