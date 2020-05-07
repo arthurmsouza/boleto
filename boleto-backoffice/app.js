@@ -73,7 +73,7 @@ chaincodeLib.enrollAdmin(1, function(e) {
 });
 
 // websocket
-var wss = require('./src/websocket/serverSide')(logger, chaincodeLib);
+//var wss = require('./src/websocket/serverSide')(logger, chaincodeLib);
 
 // create a new express server
 var app = express();
@@ -134,6 +134,6 @@ var server = http.createServer(app).listen(appEnv.port, function() {
 });
 
 // setup websocket server
-wss.setup(server);
+//wss.setup(server);
 
 module.exports = app;

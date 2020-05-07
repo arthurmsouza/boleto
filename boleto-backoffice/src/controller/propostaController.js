@@ -22,7 +22,7 @@ var propostaController = function(logger, chaincodeLib) {
     };
 
     var registra = function(req, res) {
-
+        console.log('##REGISTRAR');
         // Obtem qual o beneficiario para definir qual a assinatura
         switch (req.body.ifBeneficiaria) {
             case 'bancobrasil':
@@ -42,6 +42,7 @@ var propostaController = function(logger, chaincodeLib) {
                 break;
         }
 
+        
         //44 caracteres
         // Building our acceptance proposal that will be stored on the ledger
         var aceiteProposta = {
@@ -51,6 +52,8 @@ var propostaController = function(logger, chaincodeLib) {
             assinaturaIFBeneficiario: assinaturaIfBeneficiario,
             assinaturaDigitalBenef: req.body.assinaturaDigitalBenef
         };
+
+        console.log('###ACEITE DE PROPOSTA', aceiteProposta);
 
         gerarBoletoProposta(req.body, function(error, boletoProposta) {
             if (!error) {
