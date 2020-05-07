@@ -10,7 +10,7 @@
         }],
         "cas": [{
             "name": "ca.example.com",
-            "api": "localhost:7054",
+            "api": "http://localhost:7054",
             "msp_id": "Org1MSP",
             "users": [{
                 "enrollId": "admin",
