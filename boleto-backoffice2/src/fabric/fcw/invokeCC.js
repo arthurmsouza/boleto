@@ -1,6 +1,6 @@
 module.exports = function(g_options, logger) {
     var utils = require('fabric-client/lib/utils.js');
-    var EventHub = require('fabric-client/lib/EventHub.js');
+    //var EventHub = require('fabric-client/lib/EventHub.js');
     var common = require('./common.js')(logger);
 
     if (!g_options) g_options = {};
@@ -42,7 +42,7 @@ module.exports = function(g_options, logger) {
         // Setup EventHub
         if (options.event_url) {
             logger.debug('[fcw] listening to event url', options.event_url);
-            eventhub = new EventHub();
+            //eventhub = new EventHub();
             eventhub.setPeerAddr(options.event_url, {
                 pem: options.pem,
                 'ssl-target-name-override': options.common_name || null //can be null if cert matches hostname
