@@ -51,12 +51,12 @@ module.exports = function(g_options, logger) {
             //        'ssl-target-name-override': 'peer0.org1.example.com'
             //    }
             //);
-            const data = channel.newChannelEventHub(peer);
+            //const eventhub = channel.newChannelEventHub(peer);
             const eventhub = chain.getChannelEventHubsForOrg();
-            eventhub.setPeerAddr(options.event_url, {
-                pem: options.pem,
-                'ssl-target-name-override': options.common_name || null //can be null if cert matches hostname
-            });
+            //antigo fabric client eventhub.setPeerAddr(options.event_url, {
+            //    pem: options.pem,
+            //    'ssl-target-name-override': options.common_name || null //can be null if cert matches hostname
+            //});
             eventhub.connect();
         } else {
             logger.debug('[fcw] will not use tx event');
