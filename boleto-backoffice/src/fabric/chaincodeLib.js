@@ -11,13 +11,14 @@ module.exports = function(options, fcw, logger) {
 
     var chainCodeEnroll = function(cb) {
         console.log('TTTTTTTunction chainCodeEnroll');
-            fcw.chainCodeEnroll(null,function(errCode, obj) {
+            var resp = fcw.chainCodeEnroll(null,function(errCode, obj) {
                     console.log('#####function chainCodeEnroll obj',obj)
                     // uptading enrollObject with authentication parameters
                     enrollObj = obj;
                     if (cb) cb(null);
                 
             });
+            console.log('resp',resp);
             console.log('AAAAAAAfunction chainCodeEnroll',enrollObj);
     }
 

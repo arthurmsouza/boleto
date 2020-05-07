@@ -42,15 +42,19 @@ module.exports = function(logger) {
 
     var chainCodeEnroll = function (options,cb){
     try { 
+        var resp = null;
         console.log('####network asyn teste');
         var networkPromise = connection();
         console.log('####network asyn teste2', networkPromise);
         networkPromise.then(network => {
-            console.log('###retornando network', network);
+            console.log(network);
+            resp = network;
             if(cb) cb(null, {network: network})
-            return;
+            
         });
-        console.log('####network asyn teste fim');
+        console.log('####network asyn teste fim', resp);
+        return resp;
+        
     } catch (error) {
         console.error(`Failed to evaluate transaction: ${error}`); 
         if (cb) cb({error: 'cannot enroll with undefined uuid' });  
