@@ -77,7 +77,7 @@ module.exports = function(logger) {
         console.log('######o homedir',os.homedir());
         console.log('######o homedir',enrollmentObj);
         
-        var store_path = path.join(__dirname, 'hfc-key-store') //store eCert in the kvs directory
+        var store_path = path.join(__dirname, '..', '..', '..', 'hfc-key-store') //store eCert in the kvs directory
         console.log('Store path:'+store_path);
         // Make eCert kvs (Key Value Store)
         HFC.newDefaultKeyValueStore({
