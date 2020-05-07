@@ -10,11 +10,11 @@ const NOME_BENEF = "Editora BlockBR"
 const ASSINATURA_DIGITAL_BENEF = "BlockBR";
 
 // API Beneficiaria
-var API_BENEF_HOST = 'localhost';
-var API_BENEF_PORT = 80;
+var API_BENEF_HOST = '18.237.52.63';
+var API_BENEF_PORT = 6001;
 
 // local test API Beneficiaria
-var API_BENEF_HOST_TEST = 'localhost'; // test address, used when running locally
+var API_BENEF_HOST_TEST = '18.237.52.63'; // test address, used when running locally
 var API_BENEF_PORT_TEST = 6001; // test port, used when running locally
 var propostaController = function() {
 
