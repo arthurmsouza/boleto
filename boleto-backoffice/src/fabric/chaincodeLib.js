@@ -11,14 +11,11 @@ module.exports = function(options, fcw, logger) {
 
     var chainCodeEnroll = function(cb) {
             fcw.chainCodeEnroll(null,function(errCode, obj) {
-                if (errCode != null) {
-                    logger.error('could not enroll...');
-                } else {
                     console.log('#####function chainCodeEnroll obj',obj)
                     // uptading enrollObject with authentication parameters
                     enrollObj = obj;
                     if (cb) cb(null);
-                }
+                
             });
     }
 
@@ -144,7 +141,9 @@ module.exports = function(options, fcw, logger) {
         console.log('########fcw',fcw);
         logger.debug('Consultando blockchain height...teste');
         console.log('########cb',cb);
-        fcw.queryChannel(fcw.chainCodeEnroll(), null, cb);
+        var network=chainCodeEnroll();
+        console.log('@@@@@@@@@network',network);
+        fcw.queryChannel(network, null, cb);
     };
 
     return {
