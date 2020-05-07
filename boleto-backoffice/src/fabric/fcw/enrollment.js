@@ -52,7 +52,7 @@ module.exports = function(logger) {
             resp = network;
             if(cb) cb(null, {network: network})
             
-        }).catch(error){console.log('###catch erro',error)}
+        }).catch(error=>{console.log('###catch erro',error)})
             ;
         console.log('####network asyn teste fim', resp);
         return resp;
