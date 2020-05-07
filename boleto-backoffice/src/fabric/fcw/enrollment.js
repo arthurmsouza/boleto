@@ -21,6 +21,7 @@ module.exports = function(logger) {
         // Check to see if we've already enrolled the user.
         console.log('####user');
         const userExists = await wallet.exists('user1');
+        console.log('####use2',userExists);
         if (!userExists) {
             console.log('An identity for the user "user1" do not exists in the wallet');
             return;
