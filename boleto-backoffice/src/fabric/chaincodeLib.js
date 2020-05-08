@@ -45,7 +45,7 @@ module.exports = function(options, fcw, logger) {
      * @param {*} aceiteProposta object to be stored on the ledger
      * @param {*} cb callback
      */
-    var cadastrarAceite = function(aceiteProposta, cb) {
+    var cadastrarAceite = function(aceiteProposta, acao,cb) {
         console.log('');
         logger.info('Cadastrando um aceite...');
         if (enrollObj == null) {
@@ -65,7 +65,7 @@ module.exports = function(options, fcw, logger) {
             event_url: options.creds.credentials.peers[0].events,
             endorsed_hook: options.creds.credentials.endorsed_hook,
             ordered_hook: options.creds.credentials.ordered_hook,
-            cc_function: 'cadastrar_aceite',
+            cc_function: acao,
             cc_args: [jsonAceiteProposta],
             pem: options.creds.credentials.tls_certificates.cert_1.pem
         };
@@ -86,7 +86,7 @@ module.exports = function(options, fcw, logger) {
             channel_id: options.creds.credentials.app.channel_id,
             chaincode_id: options.creds.credentials.app.chaincode_id,
             chaincode_version: options.creds.credentials.app.chaincode_version,
-            cc_function: 'consultar_aceite',
+            cc_function: 'consultarBoleto',
             cc_args: [assinaturaIFBeneficiario]
         };
         fcw.queryChaincode(enrollObj, opts, function(err, resp) {
@@ -155,7 +155,7 @@ module.exports = function(options, fcw, logger) {
             event_url: options.creds.credentials.peers[0].events,
             endorsed_hook: options.creds.credentials.endorsed_hook,
             ordered_hook: options.creds.credentials.ordered_hook,
-            cc_function: 'pagar_boleto',
+            cc_function: 'pagarBoleto',
             cc_args: [args.linhaDigitavel, args.assinaturaIF],
             pem: options.creds.credentials.tls_certificates.cert_1.pem
         };

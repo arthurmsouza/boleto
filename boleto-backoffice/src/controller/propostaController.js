@@ -45,26 +45,115 @@ var propostaController = function(logger, chaincodeLib) {
         
         //44 caracteres
         // Building our acceptance proposal that will be stored on the ledger
+        //var aceiteProposta = {
+        //    dataHoraAceite: req.body.dataHoraAceite,
+        //    hashProposta: req.body.hashProposta,
+        //    boleto: null,
+        //    assinaturaIFBeneficiario: assinaturaIfBeneficiario,
+        //    assinaturaDigitalBenef: req.body.assinaturaDigitalBenef
+        //};
+        var pessoaFisica = {
+            id: req.body.nome,
+            nome: req.body.nome,
+            cpf: req.body.cpf
+        };
+
+        var pessoaJuridica = {
+            id: req.body.nomeBeneficiaria,
+            nome: req.body.nomeBeneficiaria,
+            cnpj: req.body.cnpjBeneficiaria
+        };
+
+        var banco = {
+            id: req.body.ifBeneficiaria,
+            nome: req.body.ifBeneficiaria,
+            cnpj: req.body.cnpjBeneficiaria
+        };
+
+        var boleto = {
+            boletoId: req.body.hashProposta,
+        };
+
         var aceiteProposta = {
-            dataHoraAceite: req.body.dataHoraAceite,
-            hashProposta: req.body.hashProposta,
-            boleto: null,
-            assinaturaIFBeneficiario: assinaturaIfBeneficiario,
-            assinaturaDigitalBenef: req.body.assinaturaDigitalBenef
+            boletoId: req.body.hashProposta,
+            instituicao: req.body.ifBeneficiaria,
+            beneficiario: req.body.nomeBeneficiaria,
+            pagador: req.body.nome,
+            valor: req.body.valor
         };
 
         console.log('###ACEITE DE PROPOSTA', aceiteProposta);
 
-        gerarBoletoProposta(req.body, function(error, boletoProposta) {
-            if (!error) {
-                logger.debug("Boleto gerado: ");
-                logger.debug(boletoProposta);
+        //gerarBoletoProposta(req.body, function(error, boletoProposta) {
+            if (!req) {
+                //logger.debug("Boleto gerado: ");
+                //logger.debug(boletoProposta);
 
-                aceiteProposta.boleto = boletoProposta;
+                //aceiteProposta.boleto = boletoProposta;
 
+                 //Pessoa Fisica
+                 logger.info('Criar Pessoa Fisica');
+                chaincodeLib.cadastrarAceite(pessoaFisica, 'criarPessoa', function(error) {
+                    if (error) {
+                        logger.error('Aceite não cadastrado');
+                        logger.debug(error);
+                        res.status(500);
+                        res.send('Internal server error');
+                    } else {
+                        logger.info('Aceite cadastrado');
+                        res.status(200);
+                        res.json(boletoProposta);
+                    }
+                });
+                
+                //Pessoa Juridica
+                logger.info('Criar Pessoa Juridica');
+                chaincodeLib.cadastrarAceite(pessoaJuridica, 'criarPessoa', function(error) {
+                    if (error) {
+                        logger.error('Aceite não cadastrado');
+                        logger.debug(error);
+                        res.status(500);
+                        res.send('Internal server error');
+                    } else {
+                        logger.info('Aceite cadastrado');
+                        res.status(200);
+                        res.json(boletoProposta);
+                    }
+                });
+                //Banco
+                logger.info('Criar Banco');
+                chaincodeLib.cadastrarAceite(banco, 'criarBanco', function(error) {
+                    if (error) {
+                        logger.error('Aceite não cadastrado');
+                        logger.debug(error);
+                        res.status(500);
+                        res.send('Internal server error');
+                    } else {
+                        logger.info('Aceite cadastrado');
+                        res.status(200);
+                        res.json(boletoProposta);
+                    }
+                });
+                
+                //Boleto
+                logger.info('Cadastro Boleto');
+                chaincodeLib.cadastrarAceite(boleto, 'criarBoleto', function(error) {
+                    if (error) {
+                        logger.error('Aceite não cadastrado');
+                        logger.debug(error);
+                        res.status(500);
+                        res.send('Internal server error');
+                    } else {
+                        logger.info('Aceite cadastrado');
+                        res.status(200);
+                        res.json(boletoProposta);
+                    }
+                });
+                //Registrar Boleto
+                logger.info('Registrando Boleto');
                 //chamada Fabric SDK passando parametros a ser gravados no Ledger
                 logger.info('Enviando uma proposta de transação [Inclusão do Aceite no Ledger]');
-                chaincodeLib.cadastrarAceite(aceiteProposta, function(error) {
+                chaincodeLib.cadastrarAceite(aceiteProposta, 'registrarBoleto', function(error) {
                     if (error) {
                         logger.error('Aceite não cadastrado');
                         logger.debug(error);
@@ -82,7 +171,7 @@ var propostaController = function(logger, chaincodeLib) {
                 res.send('Bad Request');
                 logger.debug(error);
             }
-        });
+        //});
     };
 
     /**
