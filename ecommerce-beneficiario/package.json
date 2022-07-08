@@ -10,7 +10,7 @@
     "cfenv": "1.0.x",
     "ejs": "^2.5.6",
     "express": "4.13.x",
-    "moment": "^2.18.1",
+    "moment": "^2.29.4",
     "morgan": "^1.8.1"
   },
   "repository": {},
